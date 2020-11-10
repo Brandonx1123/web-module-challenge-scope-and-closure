@@ -61,7 +61,7 @@ Use the inning function below to do the following:
   For example: invoking inning() should return a numerical score value of 0, 1, or 2
 */
 
-function inning(inningCB){
+function inning(){
 return Math.floor(Math.random() * 3) ;
     
 }
@@ -106,11 +106,11 @@ finalScore(inning,9);
 // the function should take the inning function as an argument 
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
-function getInningScore() {
+function getInningScore(cb) {
   // console.log(cb());
   return {
-    Home:inning(),   //home inning score .. calling on the "inning function"
-    Away:inning(),   //away inning score ... calling on the "innning function"
+    Home:cb(),   //home inning score .. calling on the "inning function"
+    Away:cb(),   //away inning score ... calling on the "innning function"
   }
 }
 getInningScore(inning);
@@ -158,13 +158,17 @@ Use the scoreboard function below to do the following:
   */
 
 
-function scoreboard(getInningScoreCB,inningCB,num) {
+function scoreboard(getInningScore,inningCB,num) {
   let homeScore = 0;
   let awayScore = 0; 
   const scoreboardarr = [];
   for(let i = 0; i < num ; i++){
-  homeScore = getInningScore().home + homeScore;
-  awayScore = getInningScore().away + awayScore;
+  homeScore = getInningScore(inningCB).Home + homeScore;
+  awayScore = getInningScore(inningCB).Away + awayScore;
+
+  scoreboardarr.push(`Inning: ${i+1}  Away ${awayScore} - Home ${homeScore}`);
+  // console.log(homeScore);
+  // console.log(awayScore);
   }
 if (homeScore === awayScore){
   scoreboardarr.push(`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`);
@@ -175,8 +179,8 @@ if (homeScore === awayScore){
 return scoreboardarr
 }
 
-console.log(scoreboard(getInningScore,9));
 
+console.log(scoreboard(getInningScore,inning,9));
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
