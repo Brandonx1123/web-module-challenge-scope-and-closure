@@ -85,8 +85,8 @@ let homescore = 0;
 let awayscore = 0;
   for(let i=0; i< num; i++){
 
-    homescore = homescore + cb();
-    awayscore = awayscore + cb();
+    homescore = homescore + cb(); //it is in loop with the past score and adding the new inning score 
+    awayscore = awayscore + cb(); // it is in loop with the past score and adding the new inning score 
   }
 
 
@@ -98,17 +98,19 @@ return {
 
 }
 finalScore(inning,9);
+
+
+
 /* Task 4: 
 // create a function called getInningScore 
 // the function should take the inning function as an argument 
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
-function getInningScore(cb) {
-  console.log(cb());
-
+function getInningScore() {
+  // console.log(cb());
   return {
-    Home:cb(),
-    Away:cb(),
+    Home:inning(),   //home inning score .. calling on the "inning function"
+    Away:inning(),   //away inning score ... calling on the "innning function"
   }
 }
 getInningScore(inning);
@@ -156,16 +158,23 @@ Use the scoreboard function below to do the following:
   */
 
 
-function scoreboard(getInningScoreCB,inningCB,num ) {
-  const scoreboard = [];
-  for(let i = 0, i < num ; i++){
-    
+function scoreboard(getInningScoreCB,inningCB,num) {
+  let homeScore = 0;
+  let awayScore = 0; 
+  const scoreboardarr = [];
+  for(let i = 0; i < num ; i++){
+  homeScore = getInningScore() + homeScore;
+  awayScore = getInningScore() + awayScore;
   }
-
-  return 
+if (homeScore === awayScore){
+  `This game will require extra innings: Away ${(awayScore)} - Home ${(homeScore)}`
+} else {
+  return `Final Score: Away ${(awayScore)} - Home ${(homeScore)} `
+}
+scoreboardarr.push(scoreboard());
 }
 
-scoreboard();
+scoreboard(getInningScore,inning,9);
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
