@@ -174,7 +174,7 @@ if (homeScore === awayScore){
   scoreboardarr.push(`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`);
 
 } else {
-  scoreboardarr.push (`Final Score: Away ${awayScore} - Home ${homeScore}`);
+  scoreboardarr.push(`Final Score: Away ${awayScore} - Home ${homeScore}`);
 }
 return scoreboardarr
 }
